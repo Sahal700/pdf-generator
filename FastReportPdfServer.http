@@ -1,0 +1,6 @@
+@FastReportPdfServer_HostAddress = http://localhost:5124
+
+GET {{FastReportPdfServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

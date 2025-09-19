@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FastReportPdfServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+841685063c42b326c0a67f0d3b392b972e4caad9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4a9ddb7d7c6b38f0fff335e7a41bb2fc4a0ffcd")]
 [assembly: System.Reflection.AssemblyProductAttribute("FastReportPdfServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FastReportPdfServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

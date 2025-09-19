@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns="urn:fastreport"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="urn:fastreport https://www.fast-report.com/xml/fastreport.xsd"
-        ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01 00:00:00" ReportInfo.Modified="2024-01-01 00:00:00" ReportInfo.CreatorVersion="1.0.0.0">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/19/2025 06:50:08" ReportInfo.CreatorVersion="2025.2.0.0">
   <Dictionary>
     <TableDataSource Name="QuotationData" ReferenceName="Data.QuotationData" DataType="System.Int32" Enabled="true">
       <Column Name="quotation_id" DataType="System.Int32"/>
@@ -19,7 +16,6 @@
       <Column Name="payment_terms" DataType="System.String"/>
       <Column Name="scope_of_work" DataType="System.String"/>
     </TableDataSource>
-
     <TableDataSource Name="QuotationItems" ReferenceName="Data.QuotationItems" DataType="System.Int32" Enabled="true">
       <Column Name="product_id" DataType="System.Int32"/>
       <Column Name="product_name" DataType="System.String"/>
@@ -34,89 +30,50 @@
       <Column Name="line_total" DataType="System.Decimal"/>
     </TableDataSource>
   </Dictionary>
-
-  <ReportPage Name="Page1" Landscape="false" PaperWidth="210" PaperHeight="297" LeftMargin="10" TopMargin="10" RightMargin="10" BottomMargin="10">
-
-    <!-- Header -->
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="110">
-      <TextObject Name="CompanyName" Left="0" Top="6" Width="360" Height="28" Text="Your Company Name" Font="Arial, 16pt, style=Bold" />
-      <TextObject Name="CompanyAddress" Left="0" Top="36" Width="360" Height="36" Text="Company Address Line 1&#13;&#10;Company Address Line 2&#13;&#10;Phone: +XX-XXXXXXXXX | Email: info@company.com" Font="Arial, 9pt" />
-      <TextObject Name="QuotationTitle" Left="453.6" Top="6" Width="264.6" Height="28" Text="QUOTATION" HorzAlign="Right" Font="Arial, 18pt, style=Bold" />
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="138.35">
+      <TextObject Name="CompanyName" Top="6" Width="360" Height="28" Text="Your Company Name" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="CompanyAddress" Top="36" Width="360" Height="45.45" Text="Company Address Line 1&#13;&#10;Company Address Line 2&#13;&#10;Phone: +XX-XXXXXXXXX | Email: info@company.com" Font="Arial, 9pt"/>
+      <TextObject Name="QuotationTitle" Left="453.6" Top="6" Width="264.6" Height="28" Text="QUOTATION" HorzAlign="Right" Font="Arial, 18pt, style=Bold"/>
       <TextObject Name="QuotationNumber" Left="453.6" Top="36" Width="264.6" Height="18.9" Text="Quote #: [QuotationData.quotation_id]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="QuotationDate" Left="453.6" Top="56" Width="264.6" Height="18.9" Text="Date: [QuotationData.quotation_date]" HorzAlign="Right" Font="Arial, 10pt"/>
       <TextObject Name="QuotationStatus" Left="453.6" Top="76" Width="264.6" Height="18.9" Text="Status: [QuotationData.quotation_status]" HorzAlign="Right" Font="Arial, 10pt"/>
-      <LineObject Name="HeaderLine" Left="0" Top="100" Width="718.2" Height="0" Border.Lines="Top" Border.Color="DarkBlue" Border.Width="2"/>
     </ReportTitleBand>
-
-    <!-- Customer Info -->
-    <DataBand Name="CustomerInfo" Top="120" Width="718.2" Height="80" DataSource="QuotationData" PrintIfDetailEmpty="false">
-      <TextObject Name="CustomerLabel" Left="0" Top="6" Width="113.4" Height="18" Text="Bill To:" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="CustomerDetails" Left="0" Top="26" Width="340" Height="48" Text="Customer ID: [QuotationData.customer_id]&#13;&#10;Project ID: [QuotationData.customer_project_id]" Font="Arial, 9pt" />
+    <DataBand Name="CustomerInfo" Top="141.55" Width="718.2" Height="106.55" DataSource="QuotationData">
+      <TextObject Name="CustomerLabel" Top="6" Width="113.4" Height="18" Text="Bill To:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="CustomerDetails" Top="26" Width="340" Height="48" Text="Customer ID: [QuotationData.customer_id]&#13;&#10;Project ID: [QuotationData.customer_project_id]" Font="Arial, 9pt"/>
       <TextObject Name="ScopeLabel" Left="378" Top="6" Width="113.4" Height="18" Text="Scope of Work:" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="ScopeDetails" Left="378" Top="26" Width="340.2" Height="48" Text="[QuotationData.scope_of_work]" Font="Arial, 9pt" WordWrap="true" />
-      <LineObject Name="CustomerLine" Left="0" Top="116" Width="718.2" Height="0" Border.Lines="Top" Border.Color="LightGray"/>
+      <TextObject Name="ScopeDetails" Left="378" Top="26" Width="340.2" Height="48" Text="[QuotationData.scope_of_work]" Font="Arial, 9pt"/>
+      <LineObject Name="CustomerLine" Top="106.55" Width="718.2" Border.Color="LightGray"/>
+      <LineObject Name="HeaderLine" Top="-3.95" Width="718.2" Border.Color="DarkBlue" Border.Width="2"/>
     </DataBand>
-
-    <!-- Items Header (repeat on new page) -->
-    <GroupHeaderBand Name="ItemsHeader" Top="130" Width="718.2" Height="28.35" RepeatOnNewPage="true">
-      <TextObject Name="ItemHeaderBg" Left="0" Top="0" Width="718.2" Height="28.35" Fill.Color="WhiteSmoke" Border.Lines="All" Border.Color="Gray"/>
-      <TextObject Name="ItemNoHeader" Left="9.45" Top="4" Width="37.8" Height="18.9" Text="S.No" Font="Arial, 9pt, style=Bold" HorzAlign="Center"/>
+    <GroupHeaderBand Name="ItemsHeader" Top="251.3" Width="718.2" Height="28.35">
+      <TextObject Name="ItemNoHeader" Left="9.45" Top="4" Width="37.8" Height="18.9" Text="S.No" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
       <TextObject Name="ProductHeader" Left="56.7" Top="4" Width="189" Height="18.9" Text="Product/Service" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="DimensionHeader" Left="255.15" Top="4" Width="75.6" Height="18.9" Text="Dimension" Font="Arial, 9pt, style=Bold" HorzAlign="Center"/>
-      <TextObject Name="QtyHeader" Left="340.2" Top="4" Width="47.25" Height="18.9" Text="Qty" Font="Arial, 9pt, style=Bold" HorzAlign="Center"/>
-      <TextObject Name="UnitHeader" Left="396.9" Top="4" Width="47.25" Height="18.9" Text="Unit" Font="Arial, 9pt, style=Bold" HorzAlign="Center"/>
-      <TextObject Name="RateHeader" Left="453.6" Top="4" Width="66.15" Height="18.9" Text="Rate" Font="Arial, 9pt, style=Bold" HorzAlign="Right"/>
-      <TextObject Name="DiscountHeader" Left="529.2" Top="4" Width="56.7" Height="18.9" Text="Disc%" Font="Arial, 9pt, style=Bold" HorzAlign="Center"/>
-      <TextObject Name="TaxHeader" Left="594.45" Top="4" Width="47.25" Height="18.9" Text="Tax%" Font="Arial, 9pt, style=Bold" HorzAlign="Center"/>
-      <TextObject Name="AmountHeader" Left="651.15" Top="4" Width="66.15" Height="18.9" Text="Amount" Font="Arial, 9pt, style=Bold" HorzAlign="Right"/>
+      <TextObject Name="DimensionHeader" Left="255.15" Top="4" Width="75.6" Height="18.9" Text="Dimension" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="QtyHeader" Left="340.2" Top="4" Width="47.25" Height="18.9" Text="Qty" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="UnitHeader" Left="396.9" Top="4" Width="47.25" Height="18.9" Text="Unit" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="RateHeader" Left="453.6" Top="4" Width="66.15" Height="18.9" Text="Rate" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="DiscountHeader" Left="529.2" Top="4" Width="56.7" Height="18.9" Text="Disc%" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="TaxHeader" Left="594.45" Top="4" Width="47.25" Height="18.9" Text="Tax%" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="AmountHeader" Left="651.15" Top="4" Width="66.15" Height="18.9" Text="Amount" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
     </GroupHeaderBand>
-
-    <!-- Items Rows -->
-    <DataBand Name="ItemsData" Top="160" Width="718.2" Height="28.35" DataSource="QuotationItems">
-      <TextObject Name="ItemRowBg" Left="0" Top="0" Width="718.2" Height="28.35" Border.Lines="All" Border.Color="LightGray"/>
-      <TextObject Name="ItemNo" Left="9.45" Top="4.72" Width="37.8" Height="18.9" Text="[Row#]" Font="Arial, 9pt" HorzAlign="Center"/>
-      <TextObject Name="ProductName" Left="56.7" Top="4.72" Width="189" Height="18.9" Text="[QuotationItems.product_name]" Font="Arial, 9pt" WordWrap="true"/>
-      <TextObject Name="Dimension" Left="255.15" Top="4.72" Width="75.6" Height="18.9" Text="[QuotationItems.dimension]" Font="Arial, 9pt" HorzAlign="Center"/>
-      <TextObject Name="Quantity" Left="340.2" Top="4.72" Width="47.25" Height="18.9" Text="[QuotationItems.quantity]" Font="Arial, 9pt" HorzAlign="Center"/>
-      <TextObject Name="Unit" Left="396.9" Top="4.72" Width="47.25" Height="18.9" Text="[QuotationItems.uom_code]" Font="Arial, 9pt" HorzAlign="Center"/>
-      <TextObject Name="UnitPrice" Left="453.6" Top="4.72" Width="66.15" Height="18.9" Text="[QuotationItems.unit_price]" Format="Currency" Font="Arial, 9pt" HorzAlign="Right"/>
-      <TextObject Name="DiscountPercent" Left="529.2" Top="4.72" Width="56.7" Height="18.9" Text="[QuotationItems.discount_percent]%" Font="Arial, 9pt" HorzAlign="Center"/>
-      <TextObject Name="TaxPercent" Left="594.45" Top="4.72" Width="47.25" Height="18.9" Text="[QuotationItems.tax_percent]%" Font="Arial, 9pt" HorzAlign="Center"/>
-      <TextObject Name="LineTotal" Left="651.15" Top="4.72" Width="66.15" Height="18.9" Text="[QuotationItems.line_total]" Format="Currency" Font="Arial, 9pt" HorzAlign="Right"/>
+    <DataBand Name="ItemsData" Top="282.85" Width="718.2" Height="47.25" CanGrow="true" DataSource="QuotationItems">
+      <TextObject Name="ItemNo" Left="9.45" Top="14.17" Width="37.8" Height="18.9" Text="[Row#]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="ProductName" Left="56.7" Top="14.17" Width="189" Height="18.9" CanGrow="true" Text="[QuotationItems.product_name]" Font="Arial, 9pt"/>
+      <TextObject Name="Dimension" Left="255.15" Top="14.17" Width="75.6" Height="18.9" CanGrow="true" Text="[QuotationItems.dimension]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Quantity" Left="340.2" Top="14.17" Width="47.25" Height="18.9" CanGrow="true" Text="[QuotationItems.quantity]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Unit" Left="396.9" Top="14.17" Width="47.25" Height="18.9" Text="[QuotationItems.uom_code]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="UnitPrice" Left="453.6" Top="14.17" Width="66.15" Height="18.9" CanGrow="true" Text="[QuotationItems.unit_price]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+      <TextObject Name="DiscountPercent" Left="529.2" Top="14.17" Width="56.7" Height="18.9" CanGrow="true" Text="[QuotationItems.discount_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="TaxPercent" Left="594.45" Top="14.17" Width="47.25" Height="18.9" CanGrow="true" Text="[QuotationItems.tax_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="LineTotal" Left="651.15" Top="14.17" Width="66.15" Height="18.9" CanGrow="true" Text="[QuotationItems.line_total]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
     </DataBand>
-
-    <!-- Summary (force to new page if needed) -->
-    <GroupFooterBand Name="Summary" Width="718.2" Height="132.3" StartNewPage="true" KeepTogether="false">
-      <LineObject Name="SummaryLine" Left="0" Top="9.45" Width="718.2" Height="0" Border.Lines="Top" Border.Color="Gray" Border.Width="1"/>
-      <TextObject Name="SubtotalLabel" Left="529.2" Top="18.9" Width="94.5" Height="18.9" Text="Subtotal:" Font="Arial, 10pt, style=Bold" HorzAlign="Right"/>
-      <TextObject Name="SubtotalValue" Left="632.25" Top="18.9" Width="85.05" Height="18.9" Text="[QuotationData.subtotal]" Format="Currency" Font="Arial, 10pt" HorzAlign="Right"/>
-      <TextObject Name="DiscountLabel" Left="529.2" Top="37.8" Width="94.5" Height="18.9" Text="Discount:" Font="Arial, 10pt" HorzAlign="Right"/>
-      <TextObject Name="DiscountValue" Left="632.25" Top="37.8" Width="85.05" Height="18.9" Text="[QuotationData.total_discount]" Format="Currency" Font="Arial, 10pt" HorzAlign="Right"/>
-      <TextObject Name="TaxableLabel" Left="529.2" Top="56.7" Width="94.5" Height="18.9" Text="Taxable Amount:" Font="Arial, 10pt" HorzAlign="Right"/>
-      <TextObject Name="TaxableValue" Left="632.25" Top="56.7" Width="85.05" Height="18.9" Text="[QuotationData.taxable_amount]" Format="Currency" Font="Arial, 10pt" HorzAlign="Right"/>
-      <TextObject Name="TaxLabel" Left="529.2" Top="75.6" Width="94.5" Height="18.9" Text="Tax:" Font="Arial, 10pt" HorzAlign="Right"/>
-      <TextObject Name="TaxValue" Left="632.25" Top="75.6" Width="85.05" Height="18.9" Text="[QuotationData.total_tax]" Format="Currency" Font="Arial, 10pt" HorzAlign="Right"/>
-      <LineObject Name="GrandTotalLine" Left="529.2" Top="94.5" Width="188.55" Height="0" Border.Lines="Top" Border.Color="Black" Border.Width="1"/>
-      <TextObject Name="GrandTotalLabel" Left="529.2" Top="103.95" Width="94.5" Height="18.9" Text="Grand Total:" Font="Arial, 12pt, style=Bold" HorzAlign="Right"/>
-      <TextObject Name="GrandTotalValue" Left="632.25" Top="103.95" Width="85.05" Height="18.9" Text="[QuotationData.grand_total]" Format="Currency" Font="Arial, 12pt, style=Bold" HorzAlign="Right"/>
-    </GroupFooterBand>
-
-    <!-- Terms (separate page) -->
-    <GroupFooterBand Name="Terms" Width="718.2" Height="40" StartNewPage="true">
-  <TextObject Name="TermsLabel" Left="0" Top="0" Width="200" Height="20" 
-              Text="Terms and Conditions:" Font="Arial, 10pt, style=Bold"/>
-  <TextObject Name="TermsValue" Left="0" Top="22" Width="700" Height="20" 
-              CanGrow="true" WordWrap="true" 
-              Text="[QuotationFooter.terms_and_condition]" Font="Arial, 10pt"/>
-</GroupFooterBand>
-
-    <!-- Footer -->
-    <PageFooterBand Name="PageFooter1" Top="560" Width="718.2" Height="47.25">
-      <LineObject Name="FooterLine" Left="0" Top="6" Width="718.2" Height="0" Border.Lines="Top" Border.Color="LightGray"/>
-      <TextObject Name="PageNumber" Left="529.2" Top="12" Width="189" Height="18.9" Text="Page [Page] of [TotalPages#]" HorzAlign="Right" Font="Arial, 9pt" TextFill.Color="Gray"/>
-      <TextObject Name="FooterText" Left="0" Top="12" Width="302.4" Height="18.9" Text="This quotation is valid for 30 days from the date of issue" Font="Arial, 9pt" TextFill.Color="Gray"/>
-      <TextObject Name="Signature" Left="453.6" Top="28.35" Width="264.6" Height="18.9" Text="Authorized Signature: ________________" Font="Arial, 9pt" HorzAlign="Right"/>
+    <PageFooterBand Name="PageFooter1" Top="333.3" Width="718.2" Height="151.2">
+      <LineObject Name="FooterLine" Top="6" Width="718.2" Border.Color="LightGray"/>
+      <TextObject Name="PageNumber" Left="491.4" Top="59.25" Width="189" Height="18.9" Text="Page [Page] of [TotalPages#]" HorzAlign="Right" Font="Arial, 9pt" TextFill.Color="Gray"/>
+      <TextObject Name="FooterText" Left="37.8" Top="87.6" Width="302.4" Height="37.8" Text="This quotation is valid for 30 days from the date of issue" Font="Arial, 9pt" TextFill.Color="Gray"/>
+      <TextObject Name="Signature" Left="415.8" Top="94.5" Width="264.6" Height="18.9" Text="Authorized Signature: ________________" HorzAlign="Right" Font="Arial, 9pt"/>
     </PageFooterBand>
-
   </ReportPage>
 </Report>

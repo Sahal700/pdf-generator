@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/20/2025 11:33:33" ReportInfo.CreatorVersion="2025.2.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/20/2025 11:38:57" ReportInfo.CreatorVersion="2025.2.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -74,7 +74,7 @@ namespace FastReport
       <TextObject Name="ToLabel" Top="10" Width="30" Height="15" Text="To:" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="CustomerName" Top="25" Width="350" Height="15" Text="[QuotationData.customer_name]" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="CustomerDetails" Top="40" Width="350" Height="45" Text="[QuotationData.customer_address]" Font="Arial, 9pt"/>
-      <TextObject Name="Subject" Top="90" Width="378.35" Height="33.9" CanGrow="true" Text="Project:[QuotationData.scope_of_work]&#13;&#10;Subject: [QuotationData.scope_of_work]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Subject" Top="90" Width="529.55" Height="33.9" CanGrow="true" Text="Project:[QuotationData.scope_of_work]&#13;&#10;Subject: [QuotationData.scope_of_work]" Font="Arial, 9pt, style=Bold"/>
     </DataBand>
     <DataBand Name="ScopeSection" Top="288.1" Width="699.3" Height="117.5">
       <TextObject Name="ScopeTitle" Top="14" Width="109.45" Height="15" Text="Scope of Work" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
@@ -127,7 +127,7 @@ namespace FastReport
       <TextObject Name="TermsDetails" Left="18.9" Top="143.7" Width="718" Height="30" CanGrow="true" Text="[QuotationData.terms_and_condition]" Font="Arial, 9pt"/>
       <LineObject Name="Line2" Top="47.25" Width="718.2" Border.Color="LightGray"/>
       <LineObject Name="Line3" Top="113.4" Width="718.2" Border.Color="LightGray"/>
-      <TextObject Name="Text2" Left="406.35" Top="9.45" Width="283.5" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="Total Quoted Amount: ₹[QuotationData.grand_total]" HorzAlign="Right" Font="Arial Narrow, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="321.3" Top="9.45" Width="368.55" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="Total Quoted Amount: ₹[QuotationData.grand_total]" HorzAlign="Right" Font="Arial Narrow, 12pt, style=Bold"/>
     </DataBand>
     <PageFooterBand Name="PageFooter1" Top="690.4" Width="699.3" Height="113.4" Guides="75.6">
       <TextObject Name="Closing" Top="1.6" Width="400" Height="15" Text="We appreciate your interest in working with AJ Surface Innovations and look forward to your confirmation." Font="Arial, 9pt"/>

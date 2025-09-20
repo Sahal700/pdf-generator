@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/20/2025 11:05:59" ReportInfo.CreatorVersion="2025.2.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/20/2025 11:33:33" ReportInfo.CreatorVersion="2025.2.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -70,21 +70,21 @@ namespace FastReport
       <TextObject Name="Text1" Top="85.05" Width="94.5" Height="18.9" Text="QUOTATION" Font="Arial, 9.75pt, style=Bold"/>
       <ShapeObject Name="Shape1" Top="66.15" Width="699.3" Height="2.65" Border.Color="Navy" Fill.Color="Navy"/>
     </ReportTitleBand>
-    <DataBand Name="CustomerInfo" Top="161" Width="699.3" Height="124.45" DataSource="QuotationData">
+    <DataBand Name="CustomerInfo" Top="161" Width="699.3" Height="123.9" DataSource="QuotationData">
       <TextObject Name="ToLabel" Top="10" Width="30" Height="15" Text="To:" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="CustomerName" Top="25" Width="350" Height="15" Text="[QuotationData.customer_name]" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="CustomerDetails" Top="40" Width="350" Height="45" Text="[QuotationData.customer_address]" Font="Arial, 9pt"/>
-      <TextObject Name="Subject" Top="90" Width="378.35" Height="33.9" Text="Project:[QuotationData.scope_of_work]&#13;&#10;Subject: [QuotationData.scope_of_work]" Font="Arial, 9pt, style=Bold"/>
-      <LineObject Name="CustomerLine" Left="-9.45" Top="124.45" Width="718.2" Border.Color="LightGray"/>
+      <TextObject Name="Subject" Top="90" Width="378.35" Height="33.9" CanGrow="true" Text="Project:[QuotationData.scope_of_work]&#13;&#10;Subject: [QuotationData.scope_of_work]" Font="Arial, 9pt, style=Bold"/>
     </DataBand>
-    <DataBand Name="ScopeSection" Top="288.65" Width="699.3" Height="117.5">
-      <TextObject Name="ScopeTitle" Top="10" Width="109.45" Height="15" Text="Scope of Work" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
-      <TextObject Name="ScopeDescription" Top="25" Width="718" Height="19.45" Text="[QuotationData.scope_of_work]" Font="Arial, 9pt"/>
+    <DataBand Name="ScopeSection" Top="288.1" Width="699.3" Height="117.5">
+      <TextObject Name="ScopeTitle" Top="14" Width="109.45" Height="15" Text="Scope of Work" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="ScopeDescription" Top="29" Width="718" Height="19.45" CanGrow="true" Text="[QuotationData.scope_of_work]" Font="Arial, 9pt"/>
       <TextObject Name="SummaryTitle" Top="99.5" Width="168.9" Height="18" Text="Quotation Summary" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
       <LineObject Name="Line1" Left="-9.45" Top="85.05" Width="718.2" Border.Color="LightGray"/>
+      <LineObject Name="CustomerLine" Left="-18.9" Top="1.6" Width="718.2" Border.Color="LightGray"/>
     </DataBand>
-    <GroupHeaderBand Name="SummaryHeader" Top="409.35" Width="699.3" Height="4.1"/>
-    <GroupHeaderBand Name="ItemsHeader" Top="416.65" Width="699.3" Height="30">
+    <GroupHeaderBand Name="SummaryHeader" Top="408.8" Width="699.3" Height="4.1"/>
+    <GroupHeaderBand Name="ItemsHeader" Top="416.1" Width="699.3" Height="30">
       <LineObject Name="HeaderTopLine" Width="718" Border.Color="Gray"/>
       <LineObject Name="VLine1" Left="40" Height="25" Border.Color="Gray"/>
       <LineObject Name="VLine2" Left="245" Height="25" Border.Color="Gray"/>
@@ -97,7 +97,7 @@ namespace FastReport
       <LineObject Name="VLine9" Left="718" Height="25" Border.Color="Gray"/>
       <LineObject Name="HeaderBottomLine" Top="25" Width="718" Border.Color="Gray"/>
     </GroupHeaderBand>
-    <DataBand Name="ItemsData" Top="490.85" Width="699.3" Height="20" CanGrow="true" DataSource="QuotationItems">
+    <DataBand Name="ItemsData" Top="490.3" Width="699.3" Height="20" CanGrow="true" DataSource="QuotationItems">
       <TextObject Name="ItemNo" Left="5" Top="5" Width="30" Height="15" Text="[Row#]" HorzAlign="Center" Font="Arial, 9pt"/>
       <TextObject Name="ProductName" Left="45" Top="5" Width="181.06" Height="15" CanGrow="true" Text="[QuotationItems.product_name]" Font="Arial, 9pt"/>
       <TextObject Name="Dimension" Left="231.1" Top="5" Width="75" Height="15" CanGrow="true" Text="[QuotationItems.dimension]" HorzAlign="Center" Font="Arial, 9pt"/>
@@ -107,7 +107,7 @@ namespace FastReport
       <TextObject Name="DiscountPercent" Left="496.1" Top="5" Width="45" Height="15" CanGrow="true" Text="[QuotationItems.discount_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
       <TextObject Name="TaxPercent" Left="551.1" Top="5" Width="40" Height="15" CanGrow="true" Text="[QuotationItems.tax_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
       <TextObject Name="LineTotal" Left="601.1" Top="5" Width="90" Height="15" CanGrow="true" Text="[QuotationItems.line_total]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
-      <DataHeaderBand Name="DataHeader1" Top="449.85" Width="699.3" Height="37.8" RepeatOnEveryPage="true">
+      <DataHeaderBand Name="DataHeader1" Top="449.3" Width="699.3" Height="37.8" RepeatOnEveryPage="true">
         <ShapeObject Name="HeaderBackground" Top="9.45" Width="703.08" Height="25" Border.Color="Gray" Fill.Color="240, 240, 240"/>
         <TextObject Name="ItemNoHeader" Left="5" Top="14.45" Width="35" Height="15" Text="Sl. No." HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
         <TextObject Name="ProductHeader" Left="45" Top="14.45" Width="181.1" Height="15" Text="Description" Font="Arial, 9pt, style=Bold"/>
@@ -120,16 +120,16 @@ namespace FastReport
         <TextObject Name="AmountHeader" Left="601.1" Top="14.45" Width="95" Height="15" Text="Amount" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
       </DataHeaderBand>
     </DataBand>
-    <DataBand Name="Data1" Top="514.05" Width="699.3" Height="173.7">
+    <DataBand Name="Data1" Top="513.5" Width="699.3" Height="173.7">
       <TextObject Name="PaymentTitle" Top="53.7" Width="120" Height="15" Text="Payment Terms" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
-      <TextObject Name="PaymentDetails" Left="20" Top="73.7" Width="350" Height="30" Text="[QuotationData.payment_terms]" Font="Arial, 9pt"/>
+      <TextObject Name="PaymentDetails" Left="20" Top="73.7" Width="350" Height="30" CanGrow="true" Text="[QuotationData.payment_terms]" Font="Arial, 9pt"/>
       <TextObject Name="TermsTitle" Top="123.7" Width="140" Height="15" Text="Terms &amp; Conditions" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
-      <TextObject Name="TermsDetails" Left="18.9" Top="143.7" Width="718" Height="30" Text="[QuotationData.terms_and_condition]" Font="Arial, 9pt"/>
+      <TextObject Name="TermsDetails" Left="18.9" Top="143.7" Width="718" Height="30" CanGrow="true" Text="[QuotationData.terms_and_condition]" Font="Arial, 9pt"/>
       <LineObject Name="Line2" Top="47.25" Width="718.2" Border.Color="LightGray"/>
       <LineObject Name="Line3" Top="113.4" Width="718.2" Border.Color="LightGray"/>
-      <TextObject Name="Text2" Left="453.6" Top="9.45" Width="236.25" Height="18.9" Border.Color="Navy" Text="Total Quoted Amount: ₹[QuotationData.grand_total]" HorzAlign="Right" Font="Arial Narrow, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="406.35" Top="9.45" Width="283.5" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="Total Quoted Amount: ₹[QuotationData.grand_total]" HorzAlign="Right" Font="Arial Narrow, 12pt, style=Bold"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="690.95" Width="699.3" Height="135.2" Guides="75.6">
+    <PageFooterBand Name="PageFooter1" Top="690.4" Width="699.3" Height="113.4" Guides="75.6">
       <TextObject Name="Closing" Top="1.6" Width="400" Height="15" Text="We appreciate your interest in working with AJ Surface Innovations and look forward to your confirmation." Font="Arial, 9pt"/>
       <TextObject Name="Regards" Top="18.05" Width="100" Height="15" Text="Warm regards," Font="Arial, 9pt"/>
       <TextObject Name="SignatureName" Top="34.5" Width="120" Height="15" Text="Anslin Jose" Font="Arial, 9pt, style=Bold"/>
@@ -137,7 +137,7 @@ namespace FastReport
       <TextObject Name="PhoneFooter" Left="1.1" Top="66.2" Width="200" Height="15" Text="📞 +91 70126 18648" Font="Arial, 9pt"/>
       <TextObject Name="WebsiteFooter" Left="0.1" Top="81.2" Width="200" Height="15" Text="🌐 www.ajsurfacepro.com" Font="Arial, 9pt" TextFill.Color="Blue"/>
       <TextObject Name="EmailFooter" Left="1.1" Top="96.2" Width="200" Height="15" Text="📧 mail@ajsurfacepro.com" Font="Arial, 9pt" TextFill.Color="Blue"/>
-      <TextObject Name="PageNumber" Left="582.55" Top="119.75" Width="118" Height="15" Text="Page [Page] of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt" TextFill.Color="Gray"/>
+      <TextObject Name="PageNumber" Left="582.55" Top="98.4" Width="118" Height="15" Text="Page [Page] of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt" TextFill.Color="Gray"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

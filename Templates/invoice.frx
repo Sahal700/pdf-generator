@@ -63,7 +63,7 @@ namespace FastReport
       <LineObject Name="HeaderLine" Top="113.4" Width="680.4" Border.Color="DarkBlue" Border.Width="3"/>
       <TextObject Name="BillToLabel" Top="122.85" Width="75.6" Height="18.9" Text="Bill To:" Font="Arial, 12pt, style=Bold" TextFill.Color="DarkBlue"/>
       <TextObject Name="CustomerInfo" Top="151.2" Width="340.2" Height="18.9" Text="[Invoice.customerName]" Font="Arial, 11pt, style=Bold"/>
-      <PictureObject Name="Picture1" Left="368.55" Top="18.9" Width="75.6" Height="75.6" Fill.Color="DarkGray" ImageLocation="..\images\bakery.png"/>
+      <PictureObject Name="Picture1" Left="368.55" Top="18.9" Width="75.6" Height="75.6" Fill.Color="DarkGray" ImageLocation="/app/images/bakery.png" ImageFormat="Png"/>
     </ReportTitleBand>
     <DataBand Name="CustomerDetails" Top="183.55" Width="680.4" Height="75.6" DataSource="Invoice">
       <TextObject Name="CustomerAddress" Top="9.45" Width="340.2" Height="47.25" Text="[Invoice.customerAddress]&#13;&#10;[Invoice.customerCity]&#13;&#10;Phone: [Invoice.customerPhone]&#13;&#10;Email: [Invoice.customerEmail]" Font="Arial, 10pt"/>

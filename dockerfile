@@ -20,4 +20,5 @@ FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 COPY Templates ./Templates
+COPY images ./images
 ENTRYPOINT ["dotnet", "FastReportPdfServer.dll"]

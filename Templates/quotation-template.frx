@@ -1,10 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/19/2025 06:50:08" ReportInfo.CreatorVersion="2025.2.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/20/2025 11:05:59" ReportInfo.CreatorVersion="2025.2.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+</ScriptText>
   <Dictionary>
     <TableDataSource Name="QuotationData" ReferenceName="Data.QuotationData" DataType="System.Int32" Enabled="true">
       <Column Name="quotation_id" DataType="System.Int32"/>
       <Column Name="customer_id" DataType="System.Int32"/>
       <Column Name="customer_project_id" DataType="System.Int32"/>
+      <Column Name="quotation_number" DataType="System.String"/>
       <Column Name="quotation_date" DataType="System.DateTime"/>
       <Column Name="subtotal" DataType="System.Decimal"/>
       <Column Name="total_discount" DataType="System.Decimal"/>
@@ -15,11 +37,18 @@
       <Column Name="terms_and_condition" DataType="System.String"/>
       <Column Name="payment_terms" DataType="System.String"/>
       <Column Name="scope_of_work" DataType="System.String"/>
+      <Column Name="company_name" DataType="System.String"/>
+      <Column Name="company_tagline" DataType="System.String"/>
+      <Column Name="company_email" DataType="System.String"/>
+      <Column Name="company_location" DataType="System.String"/>
+      <Column Name="customer_name" DataType="System.String"/>
+      <Column Name="customer_address" DataType="System.String"/>
+      <Column Name="grand_total_words" DataType="System.String"/>
     </TableDataSource>
     <TableDataSource Name="QuotationItems" ReferenceName="Data.QuotationItems" DataType="System.Int32" Enabled="true">
       <Column Name="product_id" DataType="System.Int32"/>
       <Column Name="product_name" DataType="System.String"/>
-      <Column Name="quantity" DataType="System.Int32"/>
+      <Column Name="area" DataType="System.Double" PropName="quantity"/>
       <Column Name="dimension" DataType="System.String"/>
       <Column Name="unit_id" DataType="System.Int32"/>
       <Column Name="unit_name" DataType="System.String"/>
@@ -30,50 +59,85 @@
       <Column Name="line_total" DataType="System.Decimal"/>
     </TableDataSource>
   </Dictionary>
-  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="138.35">
-      <TextObject Name="CompanyName" Top="6" Width="360" Height="28" Text="Your Company Name" Font="Arial, 16pt, style=Bold"/>
-      <TextObject Name="CompanyAddress" Top="36" Width="360" Height="45.45" Text="Company Address Line 1&#13;&#10;Company Address Line 2&#13;&#10;Phone: +XX-XXXXXXXXX | Email: info@company.com" Font="Arial, 9pt"/>
-      <TextObject Name="QuotationTitle" Left="453.6" Top="6" Width="264.6" Height="28" Text="QUOTATION" HorzAlign="Right" Font="Arial, 18pt, style=Bold"/>
-      <TextObject Name="QuotationNumber" Left="453.6" Top="36" Width="264.6" Height="18.9" Text="Quote #: [QuotationData.quotation_id]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="QuotationDate" Left="453.6" Top="56" Width="264.6" Height="18.9" Text="Date: [QuotationData.quotation_date]" HorzAlign="Right" Font="Arial, 10pt"/>
-      <TextObject Name="QuotationStatus" Left="453.6" Top="76" Width="264.6" Height="18.9" Text="Status: [QuotationData.quotation_status]" HorzAlign="Right" Font="Arial, 10pt"/>
+  <ReportPage Name="Page1" TopMargin="15" RightMargin="15" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="699.3" Height="157.8">
+      <ShapeObject Name="LogoPlaceholder" Width="89.45" Height="60" Border.Color="Gray" Border.Style="Dash" Fill.Color="LightGray"/>
+      <TextObject Name="LogoText" Left="5" Top="25" Width="70" Height="15" Text="LOGO" HorzAlign="Center" Font="Arial, 8pt" TextFill.Color="Gray"/>
+      <TextObject Name="CompanyName" Left="90" Width="185.5" Height="53.35" Text="SURFACE&#13;&#10;INNOVATIONS" Font="Arial, 18pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="CompanyTagline" Left="420.75" Top="6.1" Width="280" Height="12" Text="[QuotationData.company_tagline]" HorzAlign="Right" Font="Arial, 8pt" TextFill.Color="Gray"/>
+      <TextObject Name="QuotationDetails" Top="122.8" Width="350" Height="30" Text="Date: [QuotationData.quotation_date]&#13;&#10;Ref No: [QuotationData.quotation_number]" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="CompanyContact" Left="420.75" Top="21.1" Width="280" Height="25" Text="📧 [QuotationData.company_email]&#13;&#10;📍 [QuotationData.company_location]" HorzAlign="Right" Font="Arial, 8pt" TextFill.Color="DarkBlue"/>
+      <TextObject Name="Text1" Top="85.05" Width="94.5" Height="18.9" Text="QUOTATION" Font="Arial, 9.75pt, style=Bold"/>
+      <ShapeObject Name="Shape1" Top="66.15" Width="699.3" Height="2.65" Border.Color="Navy" Fill.Color="Navy"/>
     </ReportTitleBand>
-    <DataBand Name="CustomerInfo" Top="141.55" Width="718.2" Height="106.55" DataSource="QuotationData">
-      <TextObject Name="CustomerLabel" Top="6" Width="113.4" Height="18" Text="Bill To:" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="CustomerDetails" Top="26" Width="340" Height="48" Text="Customer ID: [QuotationData.customer_id]&#13;&#10;Project ID: [QuotationData.customer_project_id]" Font="Arial, 9pt"/>
-      <TextObject Name="ScopeLabel" Left="378" Top="6" Width="113.4" Height="18" Text="Scope of Work:" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="ScopeDetails" Left="378" Top="26" Width="340.2" Height="48" Text="[QuotationData.scope_of_work]" Font="Arial, 9pt"/>
-      <LineObject Name="CustomerLine" Top="106.55" Width="718.2" Border.Color="LightGray"/>
-      <LineObject Name="HeaderLine" Top="-3.95" Width="718.2" Border.Color="DarkBlue" Border.Width="2"/>
+    <DataBand Name="CustomerInfo" Top="161" Width="699.3" Height="124.45" DataSource="QuotationData">
+      <TextObject Name="ToLabel" Top="10" Width="30" Height="15" Text="To:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="CustomerName" Top="25" Width="350" Height="15" Text="[QuotationData.customer_name]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="CustomerDetails" Top="40" Width="350" Height="45" Text="[QuotationData.customer_address]" Font="Arial, 9pt"/>
+      <TextObject Name="Subject" Top="90" Width="378.35" Height="33.9" Text="Project:[QuotationData.scope_of_work]&#13;&#10;Subject: [QuotationData.scope_of_work]" Font="Arial, 9pt, style=Bold"/>
+      <LineObject Name="CustomerLine" Left="-9.45" Top="124.45" Width="718.2" Border.Color="LightGray"/>
     </DataBand>
-    <GroupHeaderBand Name="ItemsHeader" Top="251.3" Width="718.2" Height="28.35">
-      <TextObject Name="ItemNoHeader" Left="9.45" Top="4" Width="37.8" Height="18.9" Text="S.No" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="ProductHeader" Left="56.7" Top="4" Width="189" Height="18.9" Text="Product/Service" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="DimensionHeader" Left="255.15" Top="4" Width="75.6" Height="18.9" Text="Dimension" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="QtyHeader" Left="340.2" Top="4" Width="47.25" Height="18.9" Text="Qty" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="UnitHeader" Left="396.9" Top="4" Width="47.25" Height="18.9" Text="Unit" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="RateHeader" Left="453.6" Top="4" Width="66.15" Height="18.9" Text="Rate" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="DiscountHeader" Left="529.2" Top="4" Width="56.7" Height="18.9" Text="Disc%" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="TaxHeader" Left="594.45" Top="4" Width="47.25" Height="18.9" Text="Tax%" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-      <TextObject Name="AmountHeader" Left="651.15" Top="4" Width="66.15" Height="18.9" Text="Amount" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+    <DataBand Name="ScopeSection" Top="288.65" Width="699.3" Height="117.5">
+      <TextObject Name="ScopeTitle" Top="10" Width="109.45" Height="15" Text="Scope of Work" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="ScopeDescription" Top="25" Width="718" Height="19.45" Text="[QuotationData.scope_of_work]" Font="Arial, 9pt"/>
+      <TextObject Name="SummaryTitle" Top="99.5" Width="168.9" Height="18" Text="Quotation Summary" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <LineObject Name="Line1" Left="-9.45" Top="85.05" Width="718.2" Border.Color="LightGray"/>
+    </DataBand>
+    <GroupHeaderBand Name="SummaryHeader" Top="409.35" Width="699.3" Height="4.1"/>
+    <GroupHeaderBand Name="ItemsHeader" Top="416.65" Width="699.3" Height="30">
+      <LineObject Name="HeaderTopLine" Width="718" Border.Color="Gray"/>
+      <LineObject Name="VLine1" Left="40" Height="25" Border.Color="Gray"/>
+      <LineObject Name="VLine2" Left="245" Height="25" Border.Color="Gray"/>
+      <LineObject Name="VLine3" Left="330" Height="25" Border.Color="Gray"/>
+      <LineObject Name="VLine4" Left="385" Height="25" Border.Color="Gray"/>
+      <LineObject Name="VLine5" Left="435" Height="25" Border.Color="Gray"/>
+      <LineObject Name="VLine6" Left="510" Height="25" Border.Color="Gray"/>
+      <LineObject Name="VLine7" Left="565" Height="25" Border.Color="Gray"/>
+      <LineObject Name="VLine8" Left="615" Height="25" Border.Color="Gray"/>
+      <LineObject Name="VLine9" Left="718" Height="25" Border.Color="Gray"/>
+      <LineObject Name="HeaderBottomLine" Top="25" Width="718" Border.Color="Gray"/>
     </GroupHeaderBand>
-    <DataBand Name="ItemsData" Top="282.85" Width="718.2" Height="47.25" CanGrow="true" DataSource="QuotationItems">
-      <TextObject Name="ItemNo" Left="9.45" Top="14.17" Width="37.8" Height="18.9" Text="[Row#]" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="ProductName" Left="56.7" Top="14.17" Width="189" Height="18.9" CanGrow="true" Text="[QuotationItems.product_name]" Font="Arial, 9pt"/>
-      <TextObject Name="Dimension" Left="255.15" Top="14.17" Width="75.6" Height="18.9" CanGrow="true" Text="[QuotationItems.dimension]" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="Quantity" Left="340.2" Top="14.17" Width="47.25" Height="18.9" CanGrow="true" Text="[QuotationItems.quantity]" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="Unit" Left="396.9" Top="14.17" Width="47.25" Height="18.9" Text="[QuotationItems.uom_code]" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="UnitPrice" Left="453.6" Top="14.17" Width="66.15" Height="18.9" CanGrow="true" Text="[QuotationItems.unit_price]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
-      <TextObject Name="DiscountPercent" Left="529.2" Top="14.17" Width="56.7" Height="18.9" CanGrow="true" Text="[QuotationItems.discount_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="TaxPercent" Left="594.45" Top="14.17" Width="47.25" Height="18.9" CanGrow="true" Text="[QuotationItems.tax_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="LineTotal" Left="651.15" Top="14.17" Width="66.15" Height="18.9" CanGrow="true" Text="[QuotationItems.line_total]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+    <DataBand Name="ItemsData" Top="490.85" Width="699.3" Height="20" CanGrow="true" DataSource="QuotationItems">
+      <TextObject Name="ItemNo" Left="5" Top="5" Width="30" Height="15" Text="[Row#]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="ProductName" Left="45" Top="5" Width="181.06" Height="15" CanGrow="true" Text="[QuotationItems.product_name]" Font="Arial, 9pt"/>
+      <TextObject Name="Dimension" Left="231.1" Top="5" Width="75" Height="15" CanGrow="true" Text="[QuotationItems.dimension]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Quantity" Left="316.1" Top="5" Width="45" Height="15" CanGrow="true" Text="[QuotationItems.area]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Unit" Left="371.1" Top="5" Width="40" Height="15" Text="[QuotationItems.uom_code]" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="UnitPrice" Left="421.1" Top="5" Width="65" Height="15" CanGrow="true" Text="[QuotationItems.unit_price]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+      <TextObject Name="DiscountPercent" Left="496.1" Top="5" Width="45" Height="15" CanGrow="true" Text="[QuotationItems.discount_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="TaxPercent" Left="551.1" Top="5" Width="40" Height="15" CanGrow="true" Text="[QuotationItems.tax_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="LineTotal" Left="601.1" Top="5" Width="90" Height="15" CanGrow="true" Text="[QuotationItems.line_total]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 9pt"/>
+      <DataHeaderBand Name="DataHeader1" Top="449.85" Width="699.3" Height="37.8" RepeatOnEveryPage="true">
+        <ShapeObject Name="HeaderBackground" Top="9.45" Width="703.08" Height="25" Border.Color="Gray" Fill.Color="240, 240, 240"/>
+        <TextObject Name="ItemNoHeader" Left="5" Top="14.45" Width="35" Height="15" Text="Sl. No." HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="ProductHeader" Left="45" Top="14.45" Width="181.1" Height="15" Text="Description" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="DimensionHeader" Left="231.1" Top="14.45" Width="80" Height="15" Text="Dimensions" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="AreaHeader" Left="316.1" Top="14.45" Width="50" Height="15" Text="Area" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="UnitHeader" Left="371.1" Top="14.45" Width="45" Height="15" Text="Unit" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="RateHeader" Left="421.1" Top="14.45" Width="70" Height="15" Text="Rate" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="DiscountHeader" Left="496.1" Top="14.45" Width="50" Height="15" Text="Disc%" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="TaxHeader" Left="551.1" Top="14.45" Width="45" Height="15" Text="Tax%" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="AmountHeader" Left="601.1" Top="14.45" Width="95" Height="15" Text="Amount" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      </DataHeaderBand>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="333.3" Width="718.2" Height="151.2">
-      <LineObject Name="FooterLine" Top="6" Width="718.2" Border.Color="LightGray"/>
-      <TextObject Name="PageNumber" Left="491.4" Top="59.25" Width="189" Height="18.9" Text="Page [Page] of [TotalPages#]" HorzAlign="Right" Font="Arial, 9pt" TextFill.Color="Gray"/>
-      <TextObject Name="FooterText" Left="37.8" Top="87.6" Width="302.4" Height="37.8" Text="This quotation is valid for 30 days from the date of issue" Font="Arial, 9pt" TextFill.Color="Gray"/>
-      <TextObject Name="Signature" Left="415.8" Top="94.5" Width="264.6" Height="18.9" Text="Authorized Signature: ________________" HorzAlign="Right" Font="Arial, 9pt"/>
+    <DataBand Name="Data1" Top="514.05" Width="699.3" Height="173.7">
+      <TextObject Name="PaymentTitle" Top="53.7" Width="120" Height="15" Text="Payment Terms" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="PaymentDetails" Left="20" Top="73.7" Width="350" Height="30" Text="[QuotationData.payment_terms]" Font="Arial, 9pt"/>
+      <TextObject Name="TermsTitle" Top="123.7" Width="140" Height="15" Text="Terms &amp; Conditions" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="TermsDetails" Left="18.9" Top="143.7" Width="718" Height="30" Text="[QuotationData.terms_and_condition]" Font="Arial, 9pt"/>
+      <LineObject Name="Line2" Top="47.25" Width="718.2" Border.Color="LightGray"/>
+      <LineObject Name="Line3" Top="113.4" Width="718.2" Border.Color="LightGray"/>
+      <TextObject Name="Text2" Left="453.6" Top="9.45" Width="236.25" Height="18.9" Border.Color="Navy" Text="Total Quoted Amount: ₹[QuotationData.grand_total]" HorzAlign="Right" Font="Arial Narrow, 12pt, style=Bold"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="690.95" Width="699.3" Height="135.2" Guides="75.6">
+      <TextObject Name="Closing" Top="1.6" Width="400" Height="15" Text="We appreciate your interest in working with AJ Surface Innovations and look forward to your confirmation." Font="Arial, 9pt"/>
+      <TextObject Name="Regards" Top="18.05" Width="100" Height="15" Text="Warm regards," Font="Arial, 9pt"/>
+      <TextObject Name="SignatureName" Top="34.5" Width="120" Height="15" Text="Anslin Jose" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="CompanyFooter" Left="1.1" Top="51.2" Width="200" Height="15" Text="AJ Surface Innovations" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="PhoneFooter" Left="1.1" Top="66.2" Width="200" Height="15" Text="📞 +91 70126 18648" Font="Arial, 9pt"/>
+      <TextObject Name="WebsiteFooter" Left="0.1" Top="81.2" Width="200" Height="15" Text="🌐 www.ajsurfacepro.com" Font="Arial, 9pt" TextFill.Color="Blue"/>
+      <TextObject Name="EmailFooter" Left="1.1" Top="96.2" Width="200" Height="15" Text="📧 mail@ajsurfacepro.com" Font="Arial, 9pt" TextFill.Color="Blue"/>
+      <TextObject Name="PageNumber" Left="582.55" Top="119.75" Width="118" Height="15" Text="Page [Page] of [TotalPages#]" HorzAlign="Right" Font="Arial, 8pt" TextFill.Color="Gray"/>
     </PageFooterBand>
   </ReportPage>
 </Report>

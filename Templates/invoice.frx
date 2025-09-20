@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/19/2025 11:09:43" ReportInfo.CreatorVersion="2025.2.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/20/2025 06:50:27" ReportInfo.CreatorVersion="2025.2.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -63,21 +63,21 @@ namespace FastReport
       <LineObject Name="HeaderLine" Top="113.4" Width="680.4" Border.Color="DarkBlue" Border.Width="3"/>
       <TextObject Name="BillToLabel" Top="122.85" Width="75.6" Height="18.9" Text="Bill To:" Font="Arial, 12pt, style=Bold" TextFill.Color="DarkBlue"/>
       <TextObject Name="CustomerInfo" Top="151.2" Width="340.2" Height="18.9" Text="[Invoice.customerName]" Font="Arial, 11pt, style=Bold"/>
-      <PictureObject Name="Picture1" Left="368.55" Top="18.9" Width="75.6" Height="75.6" Fill.Color="DarkGray" ImageLocation="D:\Baristo\FastReportPdfServer\images\bakery.png" ImageFormat="Png"/>
+      <PictureObject Name="Picture1" Left="368.55" Top="18.9" Width="75.6" Height="75.6" Fill.Color="DarkGray" ImageLocation="..\images\bakery.png"/>
     </ReportTitleBand>
-    <DataBand Name="CustomerDetails" Top="183.55" Width="680.4" Height="66.15" DataSource="Invoice">
+    <DataBand Name="CustomerDetails" Top="183.55" Width="680.4" Height="75.6" DataSource="Invoice">
       <TextObject Name="CustomerAddress" Top="9.45" Width="340.2" Height="47.25" Text="[Invoice.customerAddress]&#13;&#10;[Invoice.customerCity]&#13;&#10;Phone: [Invoice.customerPhone]&#13;&#10;Email: [Invoice.customerEmail]" Font="Arial, 10pt"/>
+      <LineObject Name="CustomerLine" Left="-9.45" Top="66.15" Width="680.4" Border.Color="LightGray"/>
     </DataBand>
-    <GroupHeaderBand Name="ItemsHeader" Top="253.7" Width="680.4" Height="132.3">
-      <TextObject Name="ItemHeaderBackground" Top="103.95" Width="680.4" Height="28.35" Border.Lines="All" Border.Color="DarkBlue" Fill.Color="PaleTurquoise" Font="Arial, 10pt"/>
-      <TextObject Name="DescriptionHeader" Left="9.45" Top="108.67" Width="340.2" Height="18.9" Text="Desceiption" Font="Arial, 11.25pt, style=Bold" TextFill.Color="DarkBlue"/>
-      <TextObject Name="QtyHeader" Left="359.1" Top="108.67" Width="56.7" Height="18.9" Text="Qty" HorzAlign="Center" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
-      <TextObject Name="UnitHeader" Left="425.25" Top="108.67" Width="56.7" Height="18.9" Text="Unit" HorzAlign="Center" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
-      <TextObject Name="LineTotalHeader" Left="585.9" Top="108.67" Width="85.05" Height="18.9" Text="Line Total" HorzAlign="Right" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
-      <TextObject Name="UnitPriceHeader" Left="491.4" Top="108.67" Width="85.05" Height="18.9" Text="Unit Price" HorzAlign="Right" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
-      <LineObject Name="CustomerLine" Top="9.45" Width="680.4" Border.Color="LightGray"/>
+    <GroupHeaderBand Name="ItemsHeader" Top="263.15" Width="680.4" Height="47.25">
+      <TextObject Name="ItemHeaderBackground" Top="18.9" Width="680.4" Height="28.35" Border.Lines="All" Border.Color="DarkBlue" Fill.Color="PaleTurquoise" Font="Arial, 10pt"/>
+      <TextObject Name="QtyHeader" Left="359.1" Top="23.62" Width="56.7" Height="18.9" Text="Qty" HorzAlign="Center" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="UnitHeader" Left="425.25" Top="23.62" Width="56.7" Height="18.9" Text="Unit" HorzAlign="Center" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="LineTotalHeader" Left="585.9" Top="23.62" Width="85.05" Height="18.9" Text="Line Total" HorzAlign="Right" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="UnitPriceHeader" Left="491.4" Top="23.62" Width="85.05" Height="18.9" Text="Unit Price" HorzAlign="Right" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
+      <TextObject Name="DescriptionHeader" Left="9.45" Top="23.62" Width="340.2" Height="18.9" Text="Desceiption" Font="Arial, 11.25pt, style=Bold" TextFill.Color="DarkBlue"/>
     </GroupHeaderBand>
-    <DataBand Name="ItemsData" Top="390" Width="680.4" Height="28.35" DataSource="Items">
+    <DataBand Name="ItemsData" Top="314.4" Width="680.4" Height="28.35" DataSource="Items">
       <TextObject Name="ItemBackground" Width="680.4" Height="28.35" Border.Lines="All" Border.Color="LightGray" Font="Arial, 10pt"/>
       <TextObject Name="Description" Left="9.45" Top="4.72" Width="340.2" Height="18.9" CanBreak="false" Text="[Items.description]" Font="Arial, 10pt"/>
       <TextObject Name="Quantity" Left="359.1" Top="4.72" Width="56.7" Height="18.9" Text="[Items.quantity]" HorzAlign="Center" Font="Arial, 10pt"/>
@@ -85,7 +85,7 @@ namespace FastReport
       <TextObject Name="UnitPrice" Left="491.4" Top="4.72" Width="85.05" Height="18.9" Text="[Items.unitPrice]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 10pt"/>
       <TextObject Name="LineTotal" Left="585.9" Top="4.72" Width="85.05" Height="18.9" Text="[Items.lineTotal]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 10pt"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="422.35" Width="680.4" Height="56.7">
+    <PageFooterBand Name="PageFooter1" Top="346.75" Width="680.4" Height="56.7">
       <LineObject Name="FooterLine" Top="9.45" Width="680.4" Border.Color="LightGray"/>
       <TextObject Name="ThankYou" Top="18.9" Width="340.2" Height="18.9" Text="Thank you for your business!" Font="Arial, 12pt, style=Bold" TextFill.Color="DarkBlue"/>
       <TextObject Name="PageNumber" Left="453.6" Top="18.9" Width="226.8" Height="18.9" Text="Page [Page] of [TotalPages#]" HorzAlign="Right" Font="Arial, 10pt" TextFill.Color="Gray"/>

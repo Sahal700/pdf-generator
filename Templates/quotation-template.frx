@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/24/2025 15:24:44" ReportInfo.CreatorVersion="2025.2.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="09/24/2025 15:33:52" ReportInfo.CreatorVersion="2025.2.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -109,7 +109,7 @@ namespace FastReport
         <TextObject Name="SummaryTitle" Top="8.9" Width="263.4" Height="18" CanGrow="true" CanBreak="false" Text="Quotation Summary" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
       </DataHeaderBand>
       <DataFooterBand Name="DataFooter1" Top="404.73" Width="718.2" Height="37.8">
-        <TextObject Name="Text2" Left="330.75" Top="9.45" Width="368.55" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="Total Quoted Amount: ₹[QuotationData.grand_total]" HorzAlign="Right" Font="Arial Narrow, 12pt, style=Bold"/>
+        <TextObject Name="Text2" Left="349.65" Top="9.45" Width="368.55" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="Total Quoted Amount: ₹[QuotationData.grand_total]" HorzAlign="Right" Font="Arial Narrow, 12pt, style=Bold"/>
       </DataFooterBand>
     </DataBand>
     <DataBand Name="Data1" Top="445.2" Width="718.2" Height="145.35" CanGrow="true" CanBreak="true">

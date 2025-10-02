@@ -62,7 +62,7 @@ namespace FastReportPdfServer.Controllers
                 using var report = new Report();
                 
                 // Create DataSet from JSON data
-                var dataSet = CreateDataSetFromJson(request.Data);
+                var dataSet = CreateDataSetFromJson(request);
                 
                 // Register the dataset with the report
                 report.RegisterData(dataSet, "Data");
@@ -113,28 +113,28 @@ namespace FastReportPdfServer.Controllers
             }
         }
 
-        private DataSet CreateDataSetFromJson(JsonElement jsonData)
+        private DataSet CreateDataSetFromJson(PdfGenerationRequest request)
         {
             var dataSet = new DataSet("Data");
 
-            foreach (var property in jsonData.EnumerateObject())
+            // Add companyHeaders table if provided
+            if (request.companyHeaders.HasValue && 
+                request.companyHeaders.Value.ValueKind == JsonValueKind.Object)
+            {
+                var companyTable = CreateTableFromObject("companyHeaders", request.companyHeaders.Value);
+                dataSet.Tables.Add(companyTable);
+            }
+
+            // Process main data
+            foreach (var property in request.Data.EnumerateObject())
             {
                 var tableName = property.Name;
                 var tableData = property.Value;
 
                 if (tableData.ValueKind == JsonValueKind.Array)
                 {
-                    // Handle array of objects (e.g., items, records)
+                    // Handle array of objects (e.g., quotation_items)
                     var dataTable = CreateTableFromArray(tableName, tableData);
-                    if (dataTable != null)
-                    {
-                        dataSet.Tables.Add(dataTable);
-                    }
-                }
-                else if (tableData.ValueKind == JsonValueKind.Object)
-                {
-                    // Handle single object (e.g., header data)
-                    var dataTable = CreateTableFromObject(tableName, tableData);
                     if (dataTable != null)
                     {
                         dataSet.Tables.Add(dataTable);
@@ -142,7 +142,41 @@ namespace FastReportPdfServer.Controllers
                 }
             }
 
+            // Create generic Data table from flat/scalar properties
+            var mainDataTable = CreateMainDataTable(request.Data);
+            if (mainDataTable != null)
+            {
+                dataSet.Tables.Add(mainDataTable);
+            }
+
             return dataSet;
+        }
+
+        private DataTable? CreateMainDataTable(JsonElement data)
+        {
+            var dataTable = new DataTable("dataTable");
+
+            // Add columns and single row with scalar values only
+            var row = dataTable.NewRow();
+            
+            foreach (var prop in data.EnumerateObject())
+            {
+                // Skip arrays and objects - they become separate tables
+                if (prop.Value.ValueKind != JsonValueKind.Array && 
+                    prop.Value.ValueKind != JsonValueKind.Object)
+                {
+                    dataTable.Columns.Add(prop.Name, typeof(object));
+                    row[prop.Name] = ConvertJsonElementToValue(prop.Value);
+                }
+            }
+
+            if (dataTable.Columns.Count > 0)
+            {
+                dataTable.Rows.Add(row);
+                return dataTable;
+            }
+
+            return null;
         }
 
         private DataTable? CreateTableFromArray(string tableName, JsonElement array)
@@ -237,10 +271,11 @@ namespace FastReportPdfServer.Controllers
         }
     }
 
-    // Simple request model
+    // Clean request model
     public class PdfGenerationRequest
     {
         public string TemplateName { get; set; } = string.Empty;
+        public JsonElement? companyHeaders { get; set; }
         public JsonElement Data { get; set; }
     }
 }

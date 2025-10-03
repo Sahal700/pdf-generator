@@ -27,7 +27,6 @@ namespace FastReport
       <Column Name="company_email" DataType="System.String"/>
       <Column Name="company_phone" DataType="System.String"/>
       <Column Name="company_location" DataType="System.String"/>
-      <Column Name="company_tagline" DataType="System.String"/>
     </TableDataSource>
     <TableDataSource Name="dataTable" ReferenceName="Data.dataTable" DataType="System.Int32" Enabled="true">
       <Column Name="quotation_id" DataType="System.Int32"/>
@@ -66,7 +65,7 @@ namespace FastReport
   </Dictionary>
   <ReportPage Name="Page1" TopMargin="15" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="129.45">
-      <TextObject Name="CompanyTagline" Left="420.75" Top="6.1" Width="280" Height="12" Text="[companyHeaders.company_tagline]" HorzAlign="Right" Font="Arial, 8pt" TextFill.Color="Gray"/>
+      <TextObject Name="CompanyTagline" Left="420.75" Top="6.1" Width="280" Height="12" Text="Flooring | Wall Cladding | Kitchen Tops" HorzAlign="Right" Font="Arial, 8pt" TextFill.Color="Gray"/>
       <TextObject Name="QuotationDetails" Left="-0.45" Top="89.8" Width="350" Height="30" Text="Date: [dataTable.quotation_date]&#13;&#10;Ref No: [dataTable.quotation_number]" Font="Arial, 9pt, style=Bold"/>
       <TextObject Name="CompanyContact" Left="420.75" Top="21.1" Width="280" Height="25" Text="[companyHeaders.company_email]&#13;&#10;[companyHeaders.company_location]" HorzAlign="Right" Font="Arial, 8pt" TextFill.Color="DarkBlue"/>
       <TextObject Name="Text1" Top="71.05" Width="94.5" Height="18.9" Text="QUOTATION" Font="Arial, 9.75pt, style=Bold"/>

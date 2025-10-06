@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="10/03/2025 07:29:57" ReportInfo.CreatorVersion="2025.2.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="10/06/2025 06:55:24" ReportInfo.CreatorVersion="2025.2.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -109,23 +109,33 @@ namespace FastReport
         <TextObject Name="AmountHeader" Left="605.55" Top="37.25" Width="111" Height="15" Text="Amount" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
         <TextObject Name="SummaryTitle" Top="8.9" Width="263.4" Height="18" CanGrow="true" CanBreak="false" Text="Quotation Summary" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
       </DataHeaderBand>
-      <DataFooterBand Name="DataFooter1" Top="411.4" Width="718.2" Height="66.15">
-        <TextObject Name="Text2" Left="349.65" Top="9.45" Width="368.55" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="Total Quoted Amount: ₹[dataTable.grand_total]" HorzAlign="Right" Font="Arial Narrow, 12pt, style=Bold"/>
-        <TextObject Name="Text6" Top="28.35" Width="718.2" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="([dataTable.grand_total_words])" HorzAlign="Right" Font="Arial Narrow, 9.75pt, style=Italic"/>
+      <DataFooterBand Name="DataFooter1" Top="411.4" Width="718.2" Height="107.95">
+        <TextObject Name="SubtotalLabel" Left="450" Top="3.55" Width="100" Height="15" Text="Subtotal:" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="SubtotalAmount" Left="555" Top="3.55" Width="163.2" Height="15" Text="₹[dataTable.subtotal]" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="DiscountLabel" Left="450" Top="18.55" Width="100" Height="15" Text="Discount:" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="DiscountAmount" Left="555" Top="18.55" Width="163.2" Height="15" Text="₹[dataTable.total_discount]" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="TaxableLabel" Left="450" Top="33.55" Width="100" Height="15" Text="Taxable Amount:" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="TaxableAmount" Left="555" Top="33.55" Width="163.2" Height="15" Text="₹[dataTable.taxable_amount]" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="TaxLabel" Left="450" Top="48.55" Width="100" Height="15" Text="Total Tax:" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="TaxAmount" Left="555" Top="48.55" Width="163.2" Height="15" Text="₹[dataTable.total_tax]" HorzAlign="Right" Font="Arial, 9pt"/>
+        <ShapeObject Name="TotalBackground" Left="440" Top="64" Width="278.2" Height="20" Border.Color="DarkRed" Fill.Color="250, 240, 240"/>
+        <TextObject Name="GrandTotalLabel" Left="450" Top="67" Width="100" Height="15" Text="Grand Total:" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="GrandTotalAmount" Left="555" Top="67" Width="163.2" Height="15" Text="₹[dataTable.grand_total]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text6" Top="89.05" Width="718.2" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="([dataTable.grand_total_words])" HorzAlign="Right" Font="Arial Narrow, 9.75pt, style=Italic"/>
       </DataFooterBand>
     </DataBand>
-    <DataBand Name="Data1" Top="481.55" Width="718.2" Height="145.35" CanGrow="true" CanBreak="true">
+    <DataBand Name="Data1" Top="523.35" Width="718.2" Height="145.35" CanGrow="true" CanBreak="true">
       <TextObject Name="PaymentTitle" Top="25.35" Width="120" Height="15" Text="Payment Terms" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
       <TextObject Name="PaymentDetails" Left="20" Top="45.35" Width="350" Height="30" CanGrow="true" Text="[dataTable.payment_terms]" Font="Arial, 9pt"/>
       <TextObject Name="TermsTitle" Top="95.35" Width="272.3" Height="15" CanGrow="true" CanBreak="false" Text="Terms &amp; Conditions" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
       <TextObject Name="TermsDetails" Left="18.9" Top="115.35" Width="699.1" Height="30" CanGrow="true" Text="[dataTable.terms_and_condition]" Font="Arial, 9pt"/>
       <LineObject Name="Line3" Top="85.05" Width="718.2" Border.Color="LightGray"/>
-      <ChildBand Name="Child1" Top="630.9" Width="718.2" Height="51.95">
+      <ChildBand Name="Child1" Top="672.7" Width="718.2" Height="51.95">
         <TextObject Name="Closing" Top="20.5" Width="400" Height="15" CanBreak="false" Text="We appreciate your interest in working with AJ Surface Innovations and look forward to your confirmation." Font="Arial, 9pt"/>
         <TextObject Name="Regards" Top="36.95" Width="100" Height="15" Text="Warm regards," Font="Arial, 9pt"/>
       </ChildBand>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="686.85" Width="718.2" Height="63.95" Guides="85.05,85.05,85.05">
+    <PageFooterBand Name="PageFooter1" Top="728.65" Width="718.2" Height="63.95" Guides="85.05,85.05,85.05">
       <TextObject Name="CompanyFooter" Left="1.1" Top="3.95" Width="200" Height="15" Text="[companyHeaders.company_name]" Font="Arial, 9pt, style=Bold"/>
       <TextObject Name="PhoneFooter" Left="1.1" Top="18.95" Width="266.15" Height="15" Text="📞 [companyHeaders.company_phone]" Font="Arial, 9pt"/>
       <TextObject Name="WebsiteFooter" Left="1.1" Top="33.95" Width="266.15" Height="15" Text="🌐 www.ajsurfacepro.com" Font="Arial, 9pt" TextFill.Color="Blue"/>

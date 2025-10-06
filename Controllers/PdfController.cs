@@ -17,6 +17,13 @@ namespace FastReportPdfServer.Controllers
             _environment = environment;
         }
 
+        [HttpGet("ping")]
+        public IActionResult Ping()
+        {
+            // Simply return 200 OK, no content
+            return Ok();
+        }
+
         [HttpGet("health")]
         public IActionResult Health()
         {

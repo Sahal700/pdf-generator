@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="10/08/2025 07:10:27" ReportInfo.CreatorVersion="2025.2.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="2024-01-01" ReportInfo.Modified="10/08/2025 10:39:55" ReportInfo.CreatorVersion="2025.2.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,6 +48,7 @@ namespace FastReport
       <Column Name="grand_total_words" DataType="System.String"/>
       <Column Name="customer_project_name" DataType="System.String"/>
       <Column Name="subject" Enabled="false" DataType="System.String"/>
+      <Column Name="full_quotation" DataType="System.Boolean" PropName="Column"/>
     </TableDataSource>
     <TableDataSource Name="quotation_items" ReferenceName="Data.quotation_items" DataType="System.Int32" Enabled="true">
       <Column Name="product_id" DataType="System.Int32"/>
@@ -84,56 +85,70 @@ namespace FastReport
       <TextObject Name="ScopeDescription" Top="19.55" Width="718" Height="19.45" CanGrow="true" Text="[dataTable.scope_of_work]" Font="Arial, 9pt"/>
       <LineObject Name="CustomerLine" Left="0.45" Top="1.6" Width="718.2" Border.Color="LightGray"/>
     </DataBand>
-    <DataBand Name="ItemsData" Top="345.77" Width="718.2" Height="20" Border.Lines="Left, Right, Bottom" CanGrow="true" DataSource="quotation_items">
-      <TextObject Name="ItemNo" Top="3" Width="32.13" Height="15" Text="[Row#]" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="ProductName" Left="32" Top="3" Width="202.06" Height="15" CanGrow="true" Text="[quotation_items.product_name]" Font="Arial, 9pt"/>
-      <TextObject Name="Dimension" Left="234.65" Top="3" Width="86.14" Height="15" CanGrow="true" Text="[quotation_items.dimension]" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="Quantity" Left="320.91" Top="3" Width="60.92" Height="15" CanGrow="true" Text="[quotation_items.quantity]" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="Unit" Left="381.67" Top="3" Width="41.58" Height="15" Text="[quotation_items.uom_code]" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="UnitPrice" Left="423.65" Top="3" Width="81.93" Height="15" CanGrow="true" Text="₹[quotation_items.unit_price]" HorzAlign="Right" Font="Arial, 9pt"/>
-      <TextObject Name="DiscountPercent" Left="508" Top="3" Width="49.9" Height="15" CanGrow="true" Text="[quotation_items.discount_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="TaxPercent" Left="557.55" Top="3" Width="46.98" Height="15" CanGrow="true" Text="[quotation_items.tax_percent]%" HorzAlign="Center" Font="Arial, 9pt"/>
-      <TextObject Name="LineTotal" Left="605.1" Top="3" Width="112.88" Height="15" CanGrow="true" Text="₹[quotation_items.line_total]" HorzAlign="Right" Font="Arial, 9pt"/>
-      <DataHeaderBand Name="DataHeader1" Top="284.52" Width="718.2" Height="57.25" RepeatOnEveryPage="true">
-        <ShapeObject Name="HeaderBackground" Left="-0.2" Top="32.25" Width="719.19" Height="25" Border.Color="Gray" Fill.Color="240, 240, 240"/>
-        <TextObject Name="ItemNoHeader" Top="37.25" Width="32.13" Height="15" Text="Sl. No." HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="ProductHeader" Left="32" Top="37.25" Width="203.1" Height="15" Text="Description" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="DimensionHeader" Left="235.65" Top="37.25" Width="86" Height="15" Text="Dimensions" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="AreaHeader" Left="321.1" Top="37.25" Width="59.92" Height="15" Text="Qty" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="UnitHeader" Left="381.55" Top="37.25" Width="41.58" Height="15" Text="Unit" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="RateHeader" Left="423.55" Top="37.25" Width="82" Height="15" Text="Rate" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="DiscountHeader" Left="509" Top="37.25" Width="50" Height="15" Text="Disc%" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="TaxHeader" Left="558.55" Top="37.25" Width="47" Height="15" Text="Tax%" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="AmountHeader" Left="605.55" Top="37.25" Width="111" Height="15" Text="Amount" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
-        <TextObject Name="SummaryTitle" Top="8.9" Width="263.4" Height="18" CanGrow="true" CanBreak="false" Text="Quotation Summary" Font="Arial, 11pt, style=Bold" TextFill.Color="DarkBlue"/>
+    <DataBand Name="Data2" Top="315.57" Width="718.2" Height="24.45" VisibleExpression="![dataTable.full_quotation]" Border.Lines="Left, Right, Bottom" CanGrow="true" DataSource="quotation_items">
+      <TextObject Name="Text16" Top="5.45" Width="32.13" Height="15" Text="[Row#]" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text18" Left="272.45" Top="5.45" Width="95.59" Height="15" CanGrow="true" Text="[quotation_items.dimension]" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text20" Left="391.12" Top="5.45" Width="136.08" Height="15" Text="[quotation_items.uom_code]" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Text21" Left="565.4" Top="5.45" Width="148.08" Height="15" CanGrow="true" Text="₹[quotation_items.unit_price]" AutoWidth="true" HorzAlign="Right" Font="Arial, 9pt"/>
+      <TextObject Name="Text17" Left="32" Top="5.45" Width="230.41" Height="15" CanGrow="true" Text="[quotation_items.product_name]" AutoWidth="true" Font="Arial, 9pt"/>
+      <DataHeaderBand Name="DataHeader2" Top="284.52" Width="718.2" Height="27.05" VisibleExpression="![dataTable.full_quotation]" RepeatOnEveryPage="true">
+        <ShapeObject Name="HeaderBackground" Left="-0.2" Top="2.05" Width="719.19" Height="25" Border.Color="Gray" Fill.Color="240, 240, 240"/>
+        <TextObject Name="RateHeader" Left="565.3" Top="7.05" Width="148.15" Height="15" Text="Rate" AutoWidth="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="UnitHeader" Left="391" Top="7.05" Width="136.08" Height="15" Text="Unit" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="DimensionHeader" Left="273.45" Top="7.05" Width="95.45" Height="15" Text="Dimensions" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="ProductHeader" Left="32" Top="7.05" Width="231.45" Height="15" Text="Description" AutoWidth="true" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="ItemNoHeader" Top="7.05" Width="32.13" Height="15" Text="Sl. No." HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
       </DataHeaderBand>
-      <DataFooterBand Name="DataFooter1" Top="369.77" Width="718.2" Height="107.95">
-        <TextObject Name="SubtotalLabel" Left="450" Top="3.55" Width="100" Height="15" Text="Subtotal:" HorzAlign="Right" Font="Arial, 9pt"/>
-        <TextObject Name="SubtotalAmount" Left="555" Top="3.55" Width="163.2" Height="15" Text="₹[dataTable.subtotal]" HorzAlign="Right" Font="Arial, 9pt"/>
+    </DataBand>
+    <DataBand Name="Data3" Top="373.02" Width="718.2" Height="25" VisibleExpression="[dataTable.full_quotation]" Border.Lines="Left, Right, Bottom" CanGrow="true" DataSource="quotation_items">
+      <TextObject Name="ItemNo" Top="6" Width="32.13" Height="15" Text="[Row#]" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="ProductName" Left="32" Top="6" Width="202.06" Height="15" CanGrow="true" Text="[quotation_items.product_name]" AutoWidth="true" Font="Arial, 9pt"/>
+      <TextObject Name="Dimension" Left="234.65" Top="6" Width="86.14" Height="15" CanGrow="true" Text="[quotation_items.dimension]" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Quantity" Left="320.91" Top="6" Width="60.92" Height="15" CanGrow="true" Text="[quotation_items.quantity]" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="Unit" Left="381.67" Top="6" Width="41.58" Height="15" Text="[quotation_items.uom_code]" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="UnitPrice" Left="423.65" Top="6" Width="81.93" Height="15" CanGrow="true" Text="₹[quotation_items.unit_price]" AutoWidth="true" HorzAlign="Right" Font="Arial, 9pt"/>
+      <TextObject Name="DiscountPercent" Left="508" Top="6" Width="49.9" Height="15" CanGrow="true" Text="[quotation_items.discount_percent]%" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="TaxPercent" Left="557.55" Top="6" Width="46.98" Height="15" CanGrow="true" Text="[quotation_items.tax_percent]%" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt"/>
+      <TextObject Name="LineTotal" Left="605.1" Top="6" Width="112.88" Height="15" CanGrow="true" Text="₹[quotation_items.line_total]" AutoWidth="true" HorzAlign="Right" Font="Arial, 9pt"/>
+      <DataHeaderBand Name="DataHeader3" Top="344.02" Width="718.2" Height="25" VisibleExpression="[dataTable.full_quotation]" RepeatOnEveryPage="true">
+        <ShapeObject Name="Shape2" Width="719.19" Height="25" Border.Color="Gray" Fill.Color="240, 240, 240"/>
+        <TextObject Name="Text7" Left="0.2" Top="5" Width="32.13" Height="15" Text="Sl. No." HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text9" Left="235.85" Top="5" Width="86" Height="15" Text="Dimensions" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text10" Left="321.3" Top="5" Width="59.92" Height="15" Text="Qty" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text11" Left="381.75" Top="5" Width="41.58" Height="15" Text="Unit" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text12" Left="423.75" Top="5" Width="82" Height="15" Text="Rate" AutoWidth="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text13" Left="509.2" Top="5" Width="50" Height="15" Text="Disc%" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text14" Left="558.75" Top="5" Width="47" Height="15" Text="Tax%" AutoWidth="true" HorzAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text15" Left="605.75" Top="5" Width="111" Height="15" Text="Amount" AutoWidth="true" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text8" Left="32.2" Top="5" Width="203.1" Height="15" Text="Description" AutoWidth="true" Font="Arial, 9pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter2" Top="402.02" Width="718.2" Height="107.95" VisibleExpression="[dataTable.full_quotation]" CanGrow="true">
+        <ShapeObject Name="TotalBackground" Left="440" Top="64" Width="278.2" Height="20" Border.Color="DarkRed" Fill.Color="250, 240, 240"/>
         <TextObject Name="DiscountLabel" Left="450" Top="18.55" Width="100" Height="15" Text="Discount:" HorzAlign="Right" Font="Arial, 9pt"/>
         <TextObject Name="DiscountAmount" Left="555" Top="18.55" Width="163.2" Height="15" Text="₹[dataTable.total_discount]" HorzAlign="Right" Font="Arial, 9pt"/>
         <TextObject Name="TaxableLabel" Left="450" Top="33.55" Width="100" Height="15" Text="Taxable Amount:" HorzAlign="Right" Font="Arial, 9pt"/>
         <TextObject Name="TaxableAmount" Left="555" Top="33.55" Width="163.2" Height="15" Text="₹[dataTable.taxable_amount]" HorzAlign="Right" Font="Arial, 9pt"/>
         <TextObject Name="TaxLabel" Left="450" Top="48.55" Width="100" Height="15" Text="Total Tax:" HorzAlign="Right" Font="Arial, 9pt"/>
         <TextObject Name="TaxAmount" Left="555" Top="48.55" Width="163.2" Height="15" Text="₹[dataTable.total_tax]" HorzAlign="Right" Font="Arial, 9pt"/>
-        <ShapeObject Name="TotalBackground" Left="440" Top="64" Width="278.2" Height="20" Border.Color="DarkRed" Fill.Color="250, 240, 240"/>
         <TextObject Name="GrandTotalLabel" Left="450" Top="67" Width="100" Height="15" Text="Grand Total:" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
         <TextObject Name="GrandTotalAmount" Left="555" Top="67" Width="163.2" Height="15" Text="₹[dataTable.grand_total]" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
         <TextObject Name="Text6" Top="89.05" Width="718.2" Height="18.9" Border.Color="Navy" CanGrow="true" CanBreak="false" Text="([dataTable.grand_total_words])" HorzAlign="Right" Font="Arial Narrow, 9.75pt, style=Italic"/>
+        <TextObject Name="SubtotalLabel" Left="450" Top="3.55" Width="100" Height="15" Text="Subtotal:" HorzAlign="Right" Font="Arial, 9pt"/>
+        <TextObject Name="SubtotalAmount" Left="555" Top="3.55" Width="163.2" Height="15" Text="₹[dataTable.subtotal]" HorzAlign="Right" Font="Arial, 9pt"/>
       </DataFooterBand>
     </DataBand>
-    <DataBand Name="Data1" Top="481.72" Width="718.2" Height="145.35" CanGrow="true" CanBreak="true">
+    <DataBand Name="Data1" Top="513.97" Width="718.2" Height="145.35" CanGrow="true" CanBreak="true">
       <TextObject Name="PaymentTitle" Top="25.35" Width="120" Height="15" Text="Payment Terms" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
       <TextObject Name="PaymentDetails" Left="20" Top="45.35" Width="350" Height="30" CanGrow="true" Text="[dataTable.payment_terms]" Font="Arial, 9pt"/>
       <TextObject Name="TermsTitle" Top="95.35" Width="272.3" Height="15" CanGrow="true" CanBreak="false" Text="Terms &amp; Conditions" Font="Arial, 10pt, style=Bold" TextFill.Color="DarkBlue"/>
       <TextObject Name="TermsDetails" Left="18.9" Top="115.35" Width="699.1" Height="30" CanGrow="true" Text="[dataTable.terms_and_condition]" Font="Arial, 9pt"/>
       <LineObject Name="Line3" Top="85.05" Width="718.2" Border.Color="LightGray"/>
-      <ChildBand Name="Child1" Top="631.07" Width="718.2" Height="51.95">
+      <ChildBand Name="Child1" Top="663.32" Width="718.2" Height="51.95">
         <TextObject Name="Closing" Top="20.5" Width="400" Height="15" CanBreak="false" Text="We appreciate your interest in working with AJ Surface Innovations and look forward to your confirmation." Font="Arial, 9pt"/>
         <TextObject Name="Regards" Top="36.95" Width="100" Height="15" Text="Warm regards," Font="Arial, 9pt"/>
       </ChildBand>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="687.02" Width="718.2" Height="63.95" Guides="85.05,85.05,85.05">
+    <PageFooterBand Name="PageFooter1" Top="719.27" Width="718.2" Height="63.95" Guides="85.05,85.05,85.05">
       <TextObject Name="CompanyFooter" Left="1.1" Top="3.95" Width="200" Height="15" Text="[companyHeaders.company_name]" Font="Arial, 9pt, style=Bold"/>
       <TextObject Name="PhoneFooter" Left="1.1" Top="18.95" Width="266.15" Height="15" Text="📞 [companyHeaders.company_phone]" Font="Arial, 9pt"/>
       <TextObject Name="WebsiteFooter" Left="1.1" Top="33.95" Width="266.15" Height="15" Text="🌐 www.ajsurfacepro.com" Font="Arial, 9pt" TextFill.Color="Blue"/>
